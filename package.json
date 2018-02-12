@@ -3,24 +3,44 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "prebuild": "gulp",
     "build": "bankai build index.js",
     "create": "choo-scaffold",
     "inspect": "bankai inspect index.js",
     "start": "bankai start index.js",
     "test": "standard && npm run test-deps",
-    "test-deps": "dependency-check . && dependency-check . --extra --no-dev -i tachyons"
+    "test-deps": "dependency-check . && dependency-check . --extra --no-dev -i tachyons ",
+    "deploy": "npm run build && now --name=trendlock dist/"
   },
   "dependencies": {
     "choo": "^6.7.0",
     "choo-devtools": "^2.3.3",
-    "choo-service-worker": "^2.3.1",
-    "sheetify": "^7.1.0",
-    "tachyons": "^4.9.1"
+    "choo-service-worker": "^2.4.0",
+    "feather-icons": "^4.5.0",
+    "nanocomponent": "^6.5.1",
+    "on-intersect": "^2.0.0",
+    "raf": "^3.4.0",
+    "sheetify": "^7.2.0",
+    "tachyons": "^4.9.1",
+    "xtend": "^4.0.1"
   },
   "devDependencies": {
-    "bankai": "^9.4.0",
+    "bankai": "^9.5.1",
     "choo-scaffold": "^1.1.2",
-    "dependency-check": "^2.10.0",
-    "standard": "^10.0.3"
+    "del": "^3.0.0",
+    "dependency-check": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-responsive": "^2.9.0",
+    "standard": "^10.0.3",
+    "typeface-pt-mono": "0.0.54"
+  },
+  "now": {
+    "name": "trendlock",
+    "public": true,
+    "alias": [
+      "trendlock.com.au",
+      "trendlocked.com.au",
+      "trendlocked.com"
+    ]
   }
 }
