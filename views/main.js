@@ -134,7 +134,7 @@ function view() {
           Using machine learning, statistical models ensembles and external data Trendlock brings value to the rich data sets of down to the second sales that modern cloud based POS systems collect. To help you expect the unexpected.
         </p>
       </section>
-      <section class="tc f3-ns lh-copy pa3 bg-white f3 lh-copy">
+      <section class="black tc f3-ns lh-copy pa3 bg-white f3 lh-copy">
         <h3>
           Proudly supported by
         </h3>
