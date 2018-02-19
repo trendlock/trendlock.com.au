@@ -1,7 +1,7 @@
-module.exports = scroll
+module.exports = scroll;
 
-function scroll (state, emitter, app) {
-  emitter.on(state.events.NAVIGATE, function () {
-    window.scrollTo(0, 0)
-  })
+function scroll(state, emitter) {
+  emitter.on(state.events.NAVIGATE, () => {
+    window.scrollTo(0, 0);
+  });
 }

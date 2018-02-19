@@ -8,12 +8,12 @@
     "create": "choo-scaffold",
     "inspect": "bankai inspect index.js",
     "start": "bankai start index.js",
-    "test": "standard && npm run test-deps",
+    "test": "xo && npm run test-deps",
     "test-deps": "dependency-check . && dependency-check . --extra --no-dev -i tachyons ",
     "deploy": "npm run build && now --name=trendlock dist/"
   },
   "dependencies": {
-    "choo": "^6.7.0",
+    "choo": "^6.8.0",
     "choo-devtools": "^2.3.3",
     "choo-service-worker": "^2.4.0",
     "feather-icons": "^4.5.0",
@@ -22,17 +22,39 @@
     "raf": "^3.4.0",
     "sheetify": "^7.2.0",
     "tachyons": "^4.9.1",
+    "universal-ga": "^1.2.0",
     "xtend": "^4.0.1"
   },
   "devDependencies": {
-    "bankai": "^9.5.1",
+    "babel-preset-env": "^1.6.1",
+    "bankai": "^9.7.0",
     "choo-scaffold": "^1.1.2",
     "del": "^3.0.0",
     "dependency-check": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-responsive": "^2.9.0",
-    "standard": "^10.0.3",
-    "typeface-pt-mono": "0.0.54"
+    "hstream": "^1.1.0",
+    "typeface-pt-mono": "0.0.54",
+    "xo": "^0.20.2"
+  },
+  "documentify": {
+    "transform": [
+      "./transforms/favicon"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 versions"
+            ]
+          }
+        }
+      ]
+    ]
   },
   "now": {
     "name": "trendlock",
@@ -42,5 +64,20 @@
       "trendlocked.com.au",
       "trendlocked.com"
     ]
+  },
+  "xo": {
+    "envs": [
+      "browser"
+    ],
+    "space": true,
+    "prettier": true,
+    "rules": {
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowTaggedTemplates": true
+        }
+      ]
+    }
   }
 }

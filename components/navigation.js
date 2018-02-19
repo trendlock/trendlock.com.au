@@ -1,26 +1,26 @@
-var Nanocomponent = require('nanocomponent')
-var html = require('choo/html')
-var raw = require('choo/html/raw')
-var css = require('sheetify')
-var xtend = require('xtend')
-var raf = require('raf')
+const Nanocomponent = require('nanocomponent');
+const html = require('choo/html');
+const raw = require('choo/html/raw');
+const css = require('sheetify');
+const xtend = require('xtend');
+const raf = require('raf');
 
-var navigation = css`
+const navigation = css`
   :host {
     transform: translate3d(0, 0, 0);
     transition: transform 350ms cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-`
+`;
 
-var hideNavigation = css`
+const hideNavigation = css`
   :host {
     transform: translate3d(0, calc(-100% + 0.5rem), 0);
   }
-`
+`;
 
 module.exports = class Navigation extends Nanocomponent {
-  constructor () {
-    super()
+  constructor() {
+    super();
 
     this.state = {
       scrollY: 0,
@@ -28,129 +28,138 @@ module.exports = class Navigation extends Nanocomponent {
       aboveFold: true,
       placeholder: false,
       border: true,
-      links: []
-    }
+      links: [],
+    };
 
-    this.handleScroll = this.handleScroll.bind(this)
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
-  load () {
-    var self = this
-    setTimeout(function () {
-      self.frame = raf(self.handleScroll)
-      self.state.active = true
-      self.rerender()
-    }, 100)
+  load() {
+    const self = this;
+    setTimeout(() => {
+      self.frame = raf(self.handleScroll);
+      self.state.active = true;
+      self.rerender();
+    }, 100);
   }
 
-  unload () {
-    raf.cancel(this.frame)
-    this.state.active = false
-    this.state.scrollY = 0
+  unload() {
+    raf.cancel(this.frame);
+    this.state.active = false;
+    this.state.scrollY = 0;
   }
 
-  createElement (props) {
-    this.state = xtend(this.state, props)
-    this.elementNavigation = this.renderNavigation()
+  createElement(props) {
+    this.state = xtend(this.state, props);
+    this.elementNavigation = this.renderNavigation();
     return html`
       <div>
         ${this.elementNavigation}
-        ${this.state.placeholder !== false ? this.renderPlaceholder() : ''}
+        ${this.state.placeholder === false ? '' : this.renderPlaceholder()}
       </div>
-    `
+    `;
   }
 
-  handleScroll () {
-    var scrollY = window.scrollY
+  handleScroll() {
+    const scrollY = window.scrollY;
     if (scrollY === this.state.scrollY) {
-      this.frame = raf(this.handleScroll)
+      this.frame = raf(this.handleScroll);
     } else {
       if (scrollY > this.state.scrollY && scrollY > 100) {
-        this.hide()
+        this.hide();
       } else {
-        this.show()
+        this.show();
       }
 
       if (scrollY < this.getBoundingHeight()) {
-        this.aboveFold()
+        this.aboveFold();
       } else {
-        this.belowFold()
+        this.belowFold();
       }
 
-      this.state.scrollY = scrollY
-      this.frame = raf(this.handleScroll)
+      this.state.scrollY = scrollY;
+      this.frame = raf(this.handleScroll);
     }
   }
 
-  getBoundingHeight () {
+  getBoundingHeight() {
     if (typeof this.state.getBoundingHeight === 'function') {
-      return this.state.getBoundingHeight()
-    } else {
-      return window.innerHeight
+      return this.state.getBoundingHeight();
     }
+    return window.innerHeight;
   }
 
-  aboveFold () {
+  aboveFold() {
     if (!this.state.aboveFold) {
-      this.state.aboveFold = true
-      this.rerender()
+      this.state.aboveFold = true;
+      this.rerender();
     }
   }
 
-  belowFold () {
+  belowFold() {
     if (this.state.aboveFold) {
-      this.state.aboveFold = false
-      this.rerender()
+      this.state.aboveFold = false;
+      this.rerender();
     }
   }
 
-  show () {
+  show() {
     if (!this.state.active) {
-      this.state.active = true
-      this.rerender()
+      this.state.active = true;
+      this.rerender();
     }
   }
 
-  hide () {
+  hide() {
     if (this.state.active) {
-      this.state.active = false
-      this.rerender()
+      this.state.active = false;
+      this.rerender();
     }
   }
 
-  renderNavigation () {
-    var hidden = this.state.active ? '' : hideNavigation
+  renderNavigation() {
+    const hidden = this.state.active ? '' : hideNavigation;
 
     return html`
-      <header class="fixed bg-white pa3 h3 bb bw3 w-100 ${navigation} ${hidden}">
-        <img class="h-100" src="/assets/title.svg" />
+      <header class="fixed flex justify-between items-center bg-white h3 pa3 bb bw3 w-100 ${navigation} ${hidden}">
+        <a href="/" class="h-100 link dim" title="Trendlock Home">
+          <img class="h-100" src="/assets/TL_locklogo_pink.svg" />
+          <img class="h-100" src="/assets/title.svg" />
+        </a>
+        <ul class="list pa0 ma0">
+          <li>
+            <a class="link black bg-animate hover-bg-dark-pink" href="/consulting">
+              Consulting
+            </a>
+          </li>
+        </ul>
       </header>
-    `
+    `;
   }
 
-  renderPlaceholder () {
+  renderPlaceholder() {
     return html`
       <div class="py0-5">${raw('&nbsp;')}</div>
-    `
+    `;
   }
 
-  renderLink (props, i, arr) {
-    var activeClass
+  renderLink(props) {
+    let activeClass;
 
     if (this.state.href === '/' && props.url === '/') {
-      activeClass = true
+      activeClass = true;
     } else if (props.url !== '/' && this.state.href.indexOf(props.url) >= 0) {
-      activeClass = true
+      activeClass = true;
     }
 
     return html`
       <div class="px0-5 psr ${activeClass ? 'fc-pinker' : ''}">
         <a href="${props.url}" class="tdn">${props.title}</a>
       </div>
-    `
+    `;
   }
 
-  update (props) {
-    return props.href !== this.state.href
+  update(props) {
+    return props.href !== this.state.href;
   }
-}
+};

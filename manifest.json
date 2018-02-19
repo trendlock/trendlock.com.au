@@ -1,7 +1,7 @@
 {
   "name": "Trendlock",
   "short_name": "Trendlock",
-  "description": "Trendlock website",
+  "description": "Trendlock helps hospitality and retail operators know when the rushes and lulls are coming so that they can make sure they have the right staff and stock on hand.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000",
