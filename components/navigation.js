@@ -121,7 +121,7 @@ module.exports = class Navigation extends Nanocomponent {
     const hidden = this.state.active ? '' : hideNavigation;
 
     return html`
-      <header class="fixed flex justify-between items-center bg-white h3 pa3 bb bw3 w-100 ${navigation} ${hidden}">
+      <header class="fixed z-1 flex justify-between items-center bg-white h3 pa3 bb bw3 w-100 ${navigation} ${hidden}">
         <a href="/" class="h-100 link dim" title="Trendlock Home">
           <img class="h-100" src="/assets/TL_locklogo_pink.svg" />
           <img class="h-100" src="/assets/title.svg" />

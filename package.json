@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "choo": "^6.8.0",
-    "choo-devtools": "^2.3.3",
+    "choo-devtools": "^2.3.4",
     "choo-service-worker": "^2.4.0",
-    "feather-icons": "^4.5.0",
+    "feather-icons": "^4.6.0",
     "nanocomponent": "^6.5.1",
     "on-intersect": "^2.0.0",
     "raf": "^3.4.0",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
-    "bankai": "^9.7.0",
+    "bankai": "^9.7.2",
     "choo-scaffold": "^1.1.2",
     "del": "^3.0.0",
     "dependency-check": "^3.0.0",
@@ -35,7 +35,7 @@
     "gulp-responsive": "^2.9.0",
     "hstream": "^1.1.0",
     "typeface-pt-mono": "0.0.54",
-    "xo": "^0.20.2"
+    "xo": "^0.20.3"
   },
   "documentify": {
     "transform": [
