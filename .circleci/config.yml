@@ -37,12 +37,12 @@ jobs:
       - attach_workspace:
           at: ~/repo
       
-      - run: npx now --name trendlock dist/
+      - run: npx now --token ${NOW_TOKEN} --name trendlock dist/
       
   promote:
     <<: *defaults
     steps:
-      - run: npx now alias
+      - run: npx now --token ${NOW_TOKEN} alias
 
 workflows:
   version: 2
