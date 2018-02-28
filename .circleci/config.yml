@@ -27,15 +27,15 @@ jobs:
       - run: npm run build
             
       - persist_to_workspace:
-          root: dist
+          root: ~/repo
           paths:
-            - **/*
+            - dist
 
   deploy:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: dist
+          at: ~/repo
       
       - run: npx now --name trendlock dist/
       
