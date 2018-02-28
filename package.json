@@ -10,7 +10,7 @@
     "start": "bankai start index.js",
     "test": "xo && npm run test-deps",
     "test-deps": "dependency-check . && dependency-check . --extra --no-dev -i tachyons ",
-    "deploy": "npm run build && now --name=trendlock dist/"
+    "deploy": "npm run build && now --name trendlock dist/"
   },
   "dependencies": {
     "choo": "^6.8.0",
@@ -54,15 +54,6 @@
           }
         }
       ]
-    ]
-  },
-  "now": {
-    "name": "trendlock",
-    "public": true,
-    "alias": [
-      "trendlock.com.au",
-      "trendlocked.com.au",
-      "trendlocked.com"
     ]
   },
   "xo": {
