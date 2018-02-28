@@ -1,0 +1,9 @@
+{
+  "name": "trendlock",
+  "public": true,
+  "target": "/dist",
+  "type": "static",
+  "alias": [
+    "www.trendlock.com.au"
+  ]
+}

@@ -1,11 +1,12 @@
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:8.9
+
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:8.9
-
-    working_directory: ~/repo
-
+    <<: *defaults
     steps:
       - checkout
 
@@ -22,3 +23,38 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       - run: npm test
+      
+      - run: npm run build
+            
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - dist
+
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      
+      - run: npx now --token ${NOW_TOKEN} --name trendlock dist/
+      
+  promote:
+    <<: *defaults
+    steps:
+      - run: npx now --token ${NOW_TOKEN} alias
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+      - promote:
+          requires:
+            - deploy
+          filters:
+            branches:
+              only: master
