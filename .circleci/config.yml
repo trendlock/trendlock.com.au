@@ -10,18 +10,8 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+      - run: npx npm@5.7.1 ci
 
-      - run: npm install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-        
       - run: npm test
       
       - run: npm run build
@@ -46,7 +36,13 @@ jobs:
       - attach_workspace:
           at: ~/repo
                 
-      - run: npx now --token ${NOW_TOKEN} alias
+      - run: 
+         name: alias deployment
+         command: npx now --token ${NOW_TOKEN} alias
+                
+      - run: 
+         name: cleanup
+         command: npx now --token ${NOW_TOKEN} rm --safe --yes trendlock
 
 workflows:
   version: 2
