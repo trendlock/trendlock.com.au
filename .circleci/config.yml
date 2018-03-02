@@ -36,7 +36,13 @@ jobs:
       - attach_workspace:
           at: ~/repo
                 
-      - run: npx now --token ${NOW_TOKEN} alias
+      - run: 
+         name: alias deployment
+         command: npx now --token ${NOW_TOKEN} alias
+                
+      - run: 
+         name: cleanup
+         command: npx now --token ${NOW_TOKEN} rm --safe --yes trendlock
 
 workflows:
   version: 2
