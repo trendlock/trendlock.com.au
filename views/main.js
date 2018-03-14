@@ -4,19 +4,6 @@ const css = require('sheetify');
 const feather = require('feather-icons');
 const LazyImage = require('../components/lazy-image');
 
-const lazyReinventure = new LazyImage({
-  alt: 'reinventure',
-  class: 'h3-ns',
-  src: '/assets/reinventure-logo@2x.png',
-  srcset: '/assets/reinventure-logo.png 1x, /assets/reinventure-logo@2x.png 2x',
-});
-
-const lazyWestpack = new LazyImage({
-  alt: 'westpack',
-  class: 'h3-ns',
-  src: '/assets/wbg-logo.svg',
-});
-
 const lazyAidan = new LazyImage({
   alt: 'avatar',
   class: 'h4 w4 ba br-100 bw2 b--white',
@@ -133,19 +120,6 @@ function view() {
         <p>
           Using machine learning, statistical models ensembles and external data Trendlock brings value to the rich data sets of down to the second sales that modern cloud based POS systems collect. To help you expect the unexpected.
         </p>
-      </section>
-      <section class="black tc f3-ns lh-copy pa3 bg-white f3 lh-copy">
-        <h3>
-          Proudly supported by
-        </h3>
-        <div class="flex flex-column flex-row-l justify-around pb4">
-          <div class="">
-            ${lazyReinventure.render()}
-          </div>
-          <div class="">
-            ${lazyWestpack.render()}
-          </div>
-        </div>
       </section>
       <div class="flex flex-column flex-row-ns justify-around">
         <article class="pa3 pa4-ns">
