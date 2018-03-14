@@ -4,19 +4,6 @@ const css = require('sheetify');
 const feather = require('feather-icons');
 const LazyImage = require('../components/lazy-image');
 
-const lazyReinventure = new LazyImage({
-  alt: 'reinventure',
-  class: 'h3-ns',
-  src: '/assets/reinventure-logo@2x.png',
-  srcset: '/assets/reinventure-logo.png 1x, /assets/reinventure-logo@2x.png 2x',
-});
-
-const lazyWestpack = new LazyImage({
-  alt: 'westpack',
-  class: 'h3-ns',
-  src: '/assets/wbg-logo.svg',
-});
-
 const lazyAidan = new LazyImage({
   alt: 'avatar',
   class: 'h4 w4 ba br-100 bw2 b--white',
