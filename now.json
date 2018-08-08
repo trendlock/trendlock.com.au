@@ -1,9 +1,8 @@
 {
   "name": "trendlock",
-  "public": true,
-  "target": "/dist",
   "type": "static",
   "alias": [
-    "www.trendlock.com.au"
+    "www.trendlock.com.au",
+    "www.trendlock.co"
   ]
 }
